@@ -21,11 +21,6 @@
 #include <sys/mman.h>
 #include <linux/pci.h>
 #include <linux/hdreg.h>
-#define _LINUX_AUDIT_H_
-#define _LINUX_PRIO_TREE_H
-#ifndef FSCONFIG_SET_FLAG
-#include <linux/fs.h>
-#endif
 
 /**
  * @defgroup libhdBUSint Bus scanning code
@@ -5819,10 +5814,7 @@ hd_t *hd_find_sysfs_id_devname(hd_data_t *hd_data, char *id, char *devname)
         !strcmp(hd->sysfs_id, id) &&
         (
           !hd->unix_dev_name ||
-          (
-            hd->unix_dev_name &&
-            !strcmp(hd->unix_dev_name, devname)
-          )
+          !strcmp(hd->unix_dev_name, devname)
         )
       ) return hd;
     }
