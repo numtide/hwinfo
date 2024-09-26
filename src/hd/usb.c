@@ -317,45 +317,45 @@ void get_usb_devs(hd_data_t *hd_data)
   }
 
   /* remove some entries */
-  for(hd = hd_data->hd; hd; hd = hd->next) {
-    if(
-      hd->module == hd_data->module &&
-      hd->sysfs_id &&
-      !hd->tag.remove
-    ) {
-
-      s = new_str(hd->sysfs_id);
-      t = strrchr(s, ':');
-      if(t) *t = 0;
-
-      for(hd1 = hd_data->hd; hd1; hd1 = hd1->next) {
-        if(
-          hd1 != hd &&
-          hd1->module == hd_data->module &&
-          hd1->sysfs_id &&
-          !hd1->tag.remove &&
-          hd1->base_class.id == hd->base_class.id
-        ) {
-
-          s1 = new_str(hd1->sysfs_id);
-          t = strrchr(s1, ':');
-          if(t) *t = 0;
-
-          /* same usb device */
-          if(!strcmp(s, s1)) {
-            hd1->tag.remove = 1;
-            ADD2LOG("removed: %s\n", hd1->sysfs_id);
-          }
-
-          s1 = free_mem(s1);
-        }
-      }
-
-      s = free_mem(s);
-    }
-  }
-
-  remove_tagged_hd_entries(hd_data);
+//  for(hd = hd_data->hd; hd; hd = hd->next) {
+//    if(
+//      hd->module == hd_data->module &&
+//      hd->sysfs_id &&
+//      !hd->tag.remove
+//    ) {
+//
+//      s = new_str(hd->sysfs_id);
+//      t = strrchr(s, ':');
+//      if(t) *t = 0;
+//
+//      for(hd1 = hd_data->hd; hd1; hd1 = hd1->next) {
+//        if(
+//          hd1 != hd &&
+//          hd1->module == hd_data->module &&
+//          hd1->sysfs_id &&
+//          !hd1->tag.remove &&
+//          hd1->base_class.id == hd->base_class.id
+//        ) {
+//
+//          s1 = new_str(hd1->sysfs_id);
+//          t = strrchr(s1, ':');
+//          if(t) *t = 0;
+//
+//          /* same usb device */
+//          if(!strcmp(s, s1)) {
+//            hd1->tag.remove = 1;
+//            ADD2LOG("removed: %s\n", hd1->sysfs_id);
+//          }
+//
+//          s1 = free_mem(s1);
+//        }
+//      }
+//
+//      s = free_mem(s);
+//    }
+//  }
+//
+//  remove_tagged_hd_entries(hd_data);
 
 
 }
